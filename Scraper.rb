@@ -8,9 +8,17 @@ require 'open-uri'
 
 URL = "http://www.slugbooks.com"
 
+
+#Scrape a course from a relative URL
 def scrape_course(course_url)
-        #Get the course specific web page
-        course_doc = Nokogiri::HTML(open(course_url))
+	begin
+        	#Get the course specific web page
+        	course_doc = Nokogiri::HTML(open(URL + course_url))
+	rescue Exception => e
+		puts "Error in scrape_course(" + URL + course_url + ")"
+		puts e
+		return nil
+	end
 
         #Go through each book for the course
         course_doc.css(".first").each do |book|
@@ -21,7 +29,7 @@ def scrape_course(course_url)
                         children = book.element_children()
 
                         #Parse and print out the URL for the image of the book
-                        puts URL + children[0].css('img')[0]['src']
+                        puts children[0].css('img')[0]['src']
 
                         #Parse and print out the name of the book
                         puts children[1].text.gsub(/\s+/, ' ')[0, children[1].text.index("|") - 1]
@@ -35,9 +43,17 @@ def scrape_course(course_url)
         end
 end
 
+#Scrapte a department from a relative URL
 def scrape_department(department_url)
-        #Open the web page for a particular department
-        department_doc = Nokogiri::HTML(open(department_url))
+ 	begin
+        	#Open the web page for a particular department
+        	department_doc = Nokogiri::HTML(open(URL + department_url))
+	rescue Exception => e
+		puts "Error in scrape_department(" + URL + department_url + ")"
+		puts e
+		return nil
+	end
+
 
         #Go through all courses in that department
         department_doc.css(".middleclasslinks").css('li').each do |course|
@@ -46,7 +62,7 @@ def scrape_department(department_url)
                 puts course.text.gsub(/\s+/, ' ').strip
 
                 #Build the new URL for the course
-                course_url = URL + course.css('a')[0]['href']
+                course_url = course.css('a')[0]['href']
 
                 #Scrape the course
                 scrape_course(course_url)
@@ -54,10 +70,17 @@ def scrape_department(department_url)
 
 end
 
+#Scrape a school from a relative URL
 def scrape_school(school_url)
-        #Open the page for a particular school
-        school_doc = Nokogiri::HTML(open(school_url))
-
+	begin
+        	#Open the page for a particular school
+        	school_doc = Nokogiri::HTML(open(URL + school_url))
+	rescue Exception => e
+		puts "Error in scrape_school(" + URL + school_url + ")"
+		puts e
+		return nil
+	end
+	
         #Go through each department at a school
         school_doc.css(".bottomlinks").css('li').each do |department|
 
@@ -65,16 +88,24 @@ def scrape_school(school_url)
                 #puts department.text.gsub(/\s+/, ' ').strip
 
                 #Build the new URL for the department
-                department_url = URL + department.css('a')[0]['href']
+                department_url = department.css('a')[0]['href']
 
                 #Scrape the Department
                 scrape_department(department_url)
         end
 end
 
+#Scrapte a state from a relative URL
 def scrape_state(state_url)
-        #Open the page for a particular state
-        states_doc = Nokogiri::HTML(open(state_url))
+	begin
+        	#Open the page for a particular state
+        	states_doc = Nokogiri::HTML(open(URL + state_url))
+	rescue Exception => e
+		puts "Error in scrape_state(" + URL + state_url + ")"
+		puts e
+		
+		return nil
+	end
 
         #Go through each school in the state
         states_doc.css(".middlelinks").css('li').each do |school|
@@ -82,24 +113,30 @@ def scrape_state(state_url)
                 #puts school.text.gsub(/\s+/, ' ').strip
 
                 #Build the new URL for the school
-                school_url = URL + school.css('a')[0]['href']
+                school_url = school.css('a')[0]['href']
 
                 #Scrape the school
                 scrape_school(school_url)
         end
 end
 
-def scrape_all()
-        #Open the web page
-        doc = Nokogiri::HTML(open(URL))
-
+#Scrape all of slugbooks
+def scrape_all(url)
+        begin	
+		#Open the web page
+        	doc = Nokogiri::HTML(open(url))
+	rescue Exception => e
+		puts "Error in scrape_all(" + url + ")"
+		puts e.text
+	end
+	
         #Get all the URLS at the bottom of the page, each representing a US state
         doc.css(".bottomlinks").css('li').each do |state|
                 #Print out the name of the State
                 #puts state.text.gsub(/\s+/, ' ').strip
 
                 #Build the new URL from the base and the one listed in the <a href="..."/>
-                state_url = URL + state.css('a')[0]['href']
+                state_url = state.css('a')[0]['href']
 
                 #Scrape the state
                 scrape_state(state_url)
@@ -107,7 +144,7 @@ def scrape_all()
 end
 
 #Help message for the command line
-help = "[-state url_for_state] Parses only data for that specific state
+HELP = "[-state url_for_state] Parses only data for that specific state
 [-school url_for_school] Parses only data for the school. Takes precedence over state
 [-department url_for_department] Parses only data for the department. Takes precedence over school
 [-course url_for_course] Parses only data for the course. Takes precedence over department\n"
@@ -130,6 +167,7 @@ if ARGV.length % 2 != 0
 	exit
 end
 
+#Parse command line arguments
 ARGV.each_index do |i|
 	if i % 2 == 1
 		next
@@ -150,6 +188,7 @@ ARGV.each_index do |i|
 	
 end
 
+#Do the requested scrape
 if command_line_course != nil
 	scrape_course(command_line_course)
 elsif command_line_department != nil
@@ -159,6 +198,6 @@ elsif command_line_school != nil
 elsif command_line_state != nil
 	scrape_state(command_line_state)
 else
-	scrape_all()
+	scrape_all(URL)
 
 end
