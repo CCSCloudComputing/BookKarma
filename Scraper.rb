@@ -103,7 +103,6 @@ def scrape_state(state_url)
 	rescue Exception => e
 		puts "Error in scrape_state(" + URL + state_url + ")"
 		puts e
-		
 		return nil
 	end
 
