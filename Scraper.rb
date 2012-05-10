@@ -156,7 +156,7 @@ command_line_course = nil
 
 #Check for the -h argument
 if ARGV.length == 1 and ARGV[0] == "-h"
-	puts help
+	puts HELP
 	exit
 end
 
