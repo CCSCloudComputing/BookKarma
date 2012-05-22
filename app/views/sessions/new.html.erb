@@ -1,0 +1,13 @@
+<%= form_tag sessions_path do %>
+
+	<%= label_tag :email %>
+	<%= content_tag(:div, flash[:error], class: "alert alert-error") if flash[:error] %>
+	<%= content_tag(:div, flash[:success], class: "alert alert-success") if flash[:success] %>
+	<%= text_field_tag :email %>
+
+	<%= label_tag :password %>
+	<%= password_field_tag :password %>
+
+	<%= submit_tag "Log in" %>
+
+<% end %>

@@ -1,38 +1,24 @@
-require 'digest/sha1'
- 
 class User < ActiveRecord::Base
- # has_many :tweets
-  validates_uniqueness_of :username
-  
-  def self.authenticate(uname, pass)
-    user = User.find_by_username(uname)
-    if user 
-      if hash_pass(pass, user.salt) == user.password
-        user
-      else
-        raise ApplicationHelper::AuthError.new "Password sucks!"
-      end
-    else
-      raise ApplicationHelper::AuthError.new "No such username!"
-    end
-  end
-  
-  def home_page
-    "/@/#{username}"
-  end
-  
-  def password=(pass)
-    self.salt = random_string(16)
-    self[:password] = hash_pass(pass, salt)  
-  end
-  
-  def self.hash_pass(pass, salt) 
-    Digest::SHA1.hexdigest(pass + salt)
-  end
-    
-  def random_string(n)
-    n.times.map { Random.rand(128).chr }.inject { |x, y| x + y }
-  end
-  
-  attr_accessible :username, :name, :salt, :password
+
+attr_accessible :username, :email, :password, :password_confirmation
+
+has_secure_password
+
+valid_email_regex = /\A[\w+\-.]+@umail\.ucsb\.edu/
+
+validates_presence_of :username, :password, :email
+
+
+
+before_save :generate_auth_token
+
+
+
+private
+
+def generate_auth_token
+	self.auth_token = SecureRandom.urlsafe_base64
+end
+
+
 end

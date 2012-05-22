@@ -1,9 +1,13 @@
 BookKarma::Application.routes.draw do
+#resources
   resources :books
-
   resources :users
+  resources :sessions, :only => [:new, :create, :destroy]
 
-  get "static_pages/home"
-  get "static_pages/help"
-  get "static_pages/about"
+
+  match "/login" => "sessions#new", as: "login"
+  match "/logout" => "sessions#destroy", as: "logout"
+
+  root :to => "sessions#new"
+
 end
