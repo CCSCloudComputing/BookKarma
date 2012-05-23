@@ -5,12 +5,13 @@
 require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
+require 'seed-fu'
 
 URL = "http://www.slugbooks.com"
 
 
 #Scrape a course from a relative URL
-def scrape_course(course_url)
+def scrape_course(course_url, writer)
 	begin
         	#Get the course specific web page
         	course_doc = Nokogiri::HTML(open(URL + course_url))
@@ -29,22 +30,30 @@ def scrape_course(course_url)
                         children = book.element_children()
 
                         #Parse and print out the URL for the image of the book
-                        puts children[0].css('img')[0]['src']
+                        url = children[0].css('img')[0]['src']
 
                         #Parse and print out the name of the book
-                        puts children[1].text.gsub(/\s+/, ' ')[0, children[1].text.index("|") - 1]
+                        title = children[1].text.gsub(/\s+/, ' ')[0, children[1].text.index("|") - 1]
 
                         #Parse and print out the author of the book
-                        puts children[3].text[4, children[3].text.length].gsub(/\s+/, ' ')
+                        author =  children[3].text[4, children[3].text.length].gsub(/\s+/, ' ')
 
                         #Parse and print out the ISBN of the book
-                        puts children[4].text[6, 13].gsub(/\s+/, ' ') + "\n\n"
+                        isbn = children[4].text[6, 13].gsub(/\s+/, ' ') + "\n\n"
+
+			#Prints the info
+			puts url
+			puts title
+			puts author
+			puts isbn
+		
+			writer.add( :title =>title, :author => author, :isbn => isbn, :image => url)
                 end
         end
 end
 
 #Scrapte a department from a relative URL
-def scrape_department(department_url)
+def scrape_department(department_url, writer)
  	begin
         	#Open the web page for a particular department
         	department_doc = Nokogiri::HTML(open(URL + department_url))
@@ -53,20 +62,18 @@ def scrape_department(department_url)
 		puts e
 		return nil
 	end
+	        #Go through all courses in that department
+        	department_doc.css(".middleclasslinks").css('li').each do |course|
 
+              		#Print the name of the course
+               		puts course.text.gsub(/\s+/, ' ').strip
 
-        #Go through all courses in that department
-        department_doc.css(".middleclasslinks").css('li').each do |course|
+                	#Build the new URL for the course
+                	course_url = course.css('a')[0]['href']
 
-                #Print the name of the course
-                puts course.text.gsub(/\s+/, ' ').strip
-
-                #Build the new URL for the course
-                course_url = course.css('a')[0]['href']
-
-                #Scrape the course
-                scrape_course(course_url)
-        end
+                	#Scrape the course
+                	scrape_course(course_url, writer)
+        	end
 
 end
 
@@ -81,17 +88,20 @@ def scrape_school(school_url)
 		return nil
 	end
 	
-        #Go through each department at a school
-        school_doc.css(".bottomlinks").css('li').each do |department|
 
-                #Print the name of the department
-                #puts department.text.gsub(/\s+/, ' ').strip
+	SeedFu::Writer.write('db/fixtures/seed_script_' + school_url.gsub('/', '...') + '.rb', :class_name => 'Book') do |writer|
+        	#Go through each department at a school
+        	school_doc.css(".bottomlinks").css('li').each do |department|
 
-                #Build the new URL for the department
-                department_url = department.css('a')[0]['href']
+    	        	#Print the name of the department
+       	        	#puts department.text.gsub(/\s+/, ' ').strip
 
-                #Scrape the Department
-                scrape_department(department_url)
+                	#Build the new URL for the department
+               		department_url = department.css('a')[0]['href']
+
+                	#Scrape the Department
+                	scrape_department(department_url, writer)
+		end
         end
 end
 
@@ -188,15 +198,16 @@ ARGV.each_index do |i|
 end
 
 #Do the requested scrape
-if command_line_course != nil
-	scrape_course(command_line_course)
-elsif command_line_department != nil
-	scrape_department(command_line_department)
-elsif command_line_school != nil
-	scrape_school(command_line_school)
-elsif command_line_state != nil
-	scrape_state(command_line_state)
-else
-	scrape_all(URL)
+	if command_line_course != nil
+		scrape_course(command_line_course, writer)
+	elsif command_line_department != nil
+		scrape_department(command_line_department, writer)
+	elsif command_line_school != nil
+		scrape_school(command_line_school)
+	elsif command_line_state != nil
+		scrape_state(command_line_state)
+	else
+		scrape_all(URL)
+
 
 end
