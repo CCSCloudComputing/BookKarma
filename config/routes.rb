@@ -1,4 +1,5 @@
 BookKarma::Application.routes.draw do
+<<<<<<< HEAD
   get "home/index"
 
   resources :books
@@ -59,4 +60,17 @@ BookKarma::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+=======
+#resources
+  resources :books
+  resources :users
+  resources :sessions, :only => [:new, :create, :destroy]
+
+
+  match "/login" => "sessions#new", as: "login"
+  match "/logout" => "sessions#destroy", as: "logout"
+
+  root :to => "sessions#new"
+
+>>>>>>> master
 end
