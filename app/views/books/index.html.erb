@@ -4,7 +4,9 @@
   <tr>
     <th>Title</th>
     <th>Author</th>
-    <th>Owner</th>
+    <th>Isbn</th>
+    <th>Url</th>
+    <th>Course</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,7 +16,9 @@
   <tr>
     <td><%= book.title %></td>
     <td><%= book.author %></td>
-    <td><%= book.owner_id %></td>
+    <td><%= book.isbn %></td>
+    <td><%= book.url %></td>
+    <td><%= book.course %></td>
     <td><%= link_to 'Show', book %></td>
     <td><%= link_to 'Edit', edit_book_path(book) %></td>
     <td><%= link_to 'Destroy', book, confirm: 'Are you sure?', method: :delete %></td>

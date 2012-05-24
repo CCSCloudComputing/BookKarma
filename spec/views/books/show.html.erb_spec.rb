@@ -5,7 +5,9 @@ describe "books/show" do
     @book = assign(:book, stub_model(Book,
       :title => "Title",
       :author => "Author",
-      :owner_id => 1
+      :isbn => "Isbn",
+      :url => "Url",
+      :course => "Course"
     ))
   end
 
@@ -14,6 +16,8 @@ describe "books/show" do
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     rendered.should match(/Title/)
     rendered.should match(/Author/)
-    rendered.should match(/1/)
+    rendered.should match(/Isbn/)
+    rendered.should match(/Url/)
+    rendered.should match(/Course/)
   end
 end

@@ -11,7 +11,7 @@ URL = "http://www.slugbooks.com"
 
 
 #Scrape a course from a relative URL
-def scrape_course(course_url, writer)
+def scrape_course(course_url, writer, course)
 	begin
         	#Get the course specific web page
         	course_doc = Nokogiri::HTML(open(URL + course_url))
@@ -47,7 +47,7 @@ def scrape_course(course_url, writer)
 			puts author
 			puts isbn
 		
-			writer.add( :title =>title, :author => author, :isbn => isbn, :image => url)
+			writer.add( :course => course, :title =>title, :author => author, :isbn => isbn, :url => url)
                 end
         end
 end
@@ -66,13 +66,13 @@ def scrape_department(department_url, writer)
         	department_doc.css(".middleclasslinks").css('li').each do |course|
 
               		#Print the name of the course
-               		puts course.text.gsub(/\s+/, ' ').strip
+               		coursename = course.text.gsub(/\s+/, ' ').strip
 
                 	#Build the new URL for the course
                 	course_url = course.css('a')[0]['href']
 
                 	#Scrape the course
-                	scrape_course(course_url, writer)
+                	scrape_course(course_url, writer, coursename)
         	end
 
 end
@@ -199,7 +199,7 @@ end
 
 #Do the requested scrape
 	if command_line_course != nil
-		scrape_course(command_line_course, writer)
+		scrape_course(command_line_course, writer, course)
 	elsif command_line_department != nil
 		scrape_department(command_line_department, writer)
 	elsif command_line_school != nil

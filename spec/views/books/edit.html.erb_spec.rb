@@ -5,7 +5,9 @@ describe "books/edit" do
     @book = assign(:book, stub_model(Book,
       :title => "MyString",
       :author => "MyString",
-      :owner_id => 1
+      :isbn => "MyString",
+      :url => "MyString",
+      :course => "MyString"
     ))
   end
 
@@ -16,7 +18,9 @@ describe "books/edit" do
     assert_select "form", :action => books_path(@book), :method => "post" do
       assert_select "input#book_title", :name => "book[title]"
       assert_select "input#book_author", :name => "book[author]"
-      assert_select "input#book_owner_id", :name => "book[owner_id]"
+      assert_select "input#book_isbn", :name => "book[isbn]"
+      assert_select "input#book_url", :name => "book[url]"
+      assert_select "input#book_course", :name => "book[course]"
     end
   end
 end
