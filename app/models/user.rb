@@ -7,6 +7,7 @@ has_secure_password
 valid_email_regex = /\A[\w+\-.]+@umail\.ucsb\.edu/
 
 validates_presence_of :username, :password, :email
+validates_uniqueness_of :username, :email
 
 
 
