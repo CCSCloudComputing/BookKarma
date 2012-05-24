@@ -2,9 +2,10 @@
 
 <table>
   <tr>
-    <th>Name</th>
+    <th>Username</th>
+    <th>Email</th>
     <th>Password</th>
-    <th>Salt</th>
+    <th>Password confirmation</th>
     <th>Points</th>
     <th></th>
     <th></th>
@@ -13,9 +14,10 @@
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.name %></td>
+    <td><%= user.username %></td>
+    <td><%= user.email %></td>
     <td><%= user.password %></td>
-    <td><%= user.salt %></td>
+    <td><%= user.password_confirmation %></td>
     <td><%= user.points %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>

@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @user.name %>
+  <b>Username:</b>
+  <%= @user.username %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @user.email %>
 </p>
 
 <p>
@@ -11,8 +16,8 @@
 </p>
 
 <p>
-  <b>Salt:</b>
-  <%= @user.salt %>
+  <b>Password confirmation:</b>
+  <%= @user.password_confirmation %>
 </p>
 
 <p>
