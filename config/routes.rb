@@ -10,6 +10,8 @@ BookKarma::Application.routes.draw do
   match "/login" => "sessions#new", as: "login"
   match "/logout" => "sessions#destroy", as: "logout"
 
+  match "/books/new" => "books#new"
+
   root :to => "sessions#new"
 
 end
