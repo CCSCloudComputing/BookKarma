@@ -1,11 +1,6 @@
-d="notice"><%= notice %></p>
+<% @owned_books.each do |o| %>
 
-<p>
-  <b>User:</b>
-  <%= @owned_book.user_id %>
-</p>
+	<div><%= o.book.id %></div>
+	<div><%= o.user.id %></div>
 
-<p>
-  <b>Book:</b>
-  <%= @owned_book.book_id %>
-</p>
+<% end %>

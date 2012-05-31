@@ -3,6 +3,8 @@ BookKarma::Application.routes.draw do
 
   resources :books
 
+  resources :owned_books
+
 #resources  resources :users
   resources :sessions, :only => [:new, :create, :destroy]
 
@@ -10,7 +12,9 @@ BookKarma::Application.routes.draw do
   match "/login" => "sessions#new", as: "login"
   match "/logout" => "sessions#destroy", as: "logout"
 
-  match "/books/new" => "books#new"
+  #match "/books/new" => "books#new"
+
+  #match "/owned_books" => "owned_books#show"
 
   root :to => "sessions#new"
 

@@ -13,7 +13,10 @@ validates_uniqueness_of :username, :email
 
 before_save :generate_auth_token
 
+
 has_many :owned_books  
+
+
 
 private
 
