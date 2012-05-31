@@ -1,7 +1,6 @@
-class User < ActiveRecord::Base
+class OwnedBook < ActiveRecord::Base
    	
 	belongs_to :user
-
 
 end
 

@@ -31,11 +31,11 @@ ActiveRecord::Schema.define(:version => 20120531030256) do
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
-    t.string   "password_digest"
-    t.string   "auth_token"
+    t.string   "password"
+    t.string   "password_confirmation"
     t.integer  "points"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
 end
