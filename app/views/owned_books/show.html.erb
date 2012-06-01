@@ -1,6 +1,22 @@
-<% @owned_books.each do |o| %>
+<h1>BookKarma</h1>
+<p>This page will show owned and wanted books</p>
+<% @owner.owned_books.each do |o| %>
+	<div class="row">
+		<div class="span8"></div>
+			<p>
+			  <b>Book ID:</b>
+			  <%= o.book_id %>
+			</p>
 
-	<div><%= o.book.id %></div>
-	<div><%= o.user.id %></div>
+			<p>
+			  <b>User ID:</b>
+			  <%= o.user_id %>
+			</p>
 
+			<p>
+				<b>Book Title:</b>
+				<%= Book.find_by_id(o.book_id).title if (o.book_id != nil && Book.find_by_id(o.book_id != nil)) %>
+			</p>
+		</div>
+	</div>
 <% end %>
