@@ -15,7 +15,7 @@
 
 			<p>
 				<b>Book Title:</b>
-				<%= Book.find_by_id(o.book_id).title if (o.book_id != nil && Book.find_by_id(o.book_id != nil)) %>
+				<%= o.book.title %>
 			</p>
 		</div>
 	</div>

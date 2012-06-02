@@ -1,5 +1,5 @@
 class Book < ActiveRecord::Base
-	has_many :owned_books
-	has_many :requests
-  attr_accessible :author, :course, :isbn, :title, :url
+	attr_accessible :user_id, :book_catalog_entrie_id
+	belongs_to :user
+	belongs_to :book_catalog_entrie
 end

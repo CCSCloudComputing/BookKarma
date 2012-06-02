@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :points, :username, :owned_books
+  attr_accessible :email, :password, :password_confirmation, :points, :username, :books
 
 
 has_secure_password
@@ -14,8 +14,8 @@ validates_uniqueness_of :username, :email
 before_save :generate_auth_token
 
 
-has_many :owned_books  
-has_many :requests
+has_many :books  
+
 
 
 private

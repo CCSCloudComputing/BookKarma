@@ -21,7 +21,7 @@ end
 
 def show 
 	@owned_books = OwnedBook.all
-	@owner = User.find_by_id(OwnedBook.find_by_id(params[:id]).user_id)
+	@owner = OwnedBook.find_by_id(params[:id]).user
 end
 
 end

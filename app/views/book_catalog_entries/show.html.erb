@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @book_catalog_entrie.title %>
+</p>
+
+<p>
+  <b>Author:</b>
+  <%= @book_catalog_entrie.author %>
+</p>
+
+<p>
+  <b>Isbn:</b>
+  <%= @book_catalog_entrie.isbn %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @book_catalog_entrie.url %>
+</p>
+
+<p>
+  <b>Course:</b>
+  <%= @book_catalog_entrie.course %>
+</p>
+
+
+<%= link_to 'Edit', edit_book_catalog_entry_path(@book_catalog_entrie) %> |
+<%= link_to 'Back', book_catalog_entries_path %>
