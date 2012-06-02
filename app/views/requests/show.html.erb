@@ -1,0 +1,22 @@
+<h1>BookKarma</h1>
+<p>This page will show your requests</p>
+<% @owner.requests.each do |h| %>
+	<div class="row">
+		<div class="span8"></div>
+			<p>
+			  <b>Book ID:</b>
+			  <%= h.book_id %>
+			</p>
+
+			<p>
+			  <b>User ID:</b>
+			  <%= h.user_id %>
+			</p>
+
+			<p>
+				<b>Book Title:</b>
+				<%= Book.find_by_id(h.book_id).title if (h.book_id != nil && Book.find_by_id(h.book_id != nil)) %>
+			</p>
+		</div>
+	</div>
+<% end %>

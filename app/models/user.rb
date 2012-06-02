@@ -15,7 +15,7 @@ before_save :generate_auth_token
 
 
 has_many :owned_books  
-
+has_many :requests
 
 
 private
