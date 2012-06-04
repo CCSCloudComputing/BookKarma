@@ -1,3 +1,81 @@
+
+<script type="text/javascript">
+   //$(function() {
+/*    $(document).ready(function() {
+
+ // Below is the name of the textfield that will be autocomplete    
+    $('#SEARCH').autocomplete({
+ // This shows the min length of charcters that must be typed before the autocomplete looks for a match.
+           // minLength: 2,
+ // This is the source of the auocomplete suggestions. In this case a list of names from the people controller, in JSON format.
+            source: '<%= book_catalog_entries_path(:json) %>',
+  // This updates the textfield when you move the updown the suggestions list, with your keyboard. In our case it will reflect the same value that you see in the suggestions which is the person.given_name.
+            focus: function(event, ui) {
+                $('#SEARCH').val(ui.item.person.given_name);
+                return false;
+            },
+ // Once a value in the drop down list is selected, do the following:
+            select: function(event, ui) {
+ // place the person.given_name value into the textfield called 'select_origin'...
+                $('#SEARCH').val(ui.item.person.given_name);
+ // and place the person.id into the hidden textfield called 'link_origin_id'. 
+        $('#HIDDEN-SEARCH').val(ui.item.person.id);
+                return false;
+            }
+        })
+ // The below code is straight from the jQuery example. It formats what data is displayed in the dropdown box, and can be customized.
+        .data( "autocomplete" )._renderItem = function( ul, item ) {
+            return $( "<li></li>" )
+                .data( "item.autocomplete", item )
+ // For now which just want to show the person.given_name in the list.
+                .append( "<a>" + item.person.given_name + "</a>" )
+                .appendTo( ul );
+        };
+    });
+*/
+</script>
+
+
+    <script>
+    //$(document).ready(function() {
+    $(function() {
+        $( "#SEARCH" ).autocomplete({
+            source: '<%= book_catalog_entries_path(:json) %>',
+            focus: function(event, ui) {
+                $('#SEARCH').val(ui.item.title);
+                return false;
+            },
+            select: function(event, ui) {
+                $('#SEARCH').val(ui.item.title); 
+                $('#SEARCH-ID').val(ui.item.id);
+                  return false;
+            }
+        })
+        .data( "autocomplete" )._renderItem = function( ul, item ) {
+	     return $( "<li></li>" )
+		.data( "item.autocomplete", item )
+		.append( "<a>" + item.title + "<br>" + item.author + "</a>" )
+		.appendTo( ul );
+		};
+    });
+    //var programmingLang = ["ActionScript","AppleScript","Asp","BASIC","C","C++",
+    //    "Clojure","COBOL","ColdFusion","Erlang","Fortran","Groovy","Haskell",
+    //    "Java","JavaScript","Lisp","Perl","PHP","Python","Ruby","Scala","Scheme"];
+    </script>
+
+
+
+<form>
+      <input id="SEARCH" type="text" />
+      <input id="SEARCH-ID" type="text" />
+</form>
+
+
+
+
+
+
+
 <h1>Listing book_catalog_entries</h1>
 
 <table>

@@ -2,13 +2,23 @@ class BookCatalogEntriesController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @book_catalog_entries = BookCatalogEntrie.all
+    #@book_catalog_entries = BookCatalogEntrie.all
+
+    if params[:term]
+      @book_catalog_entries = BookCatalogEntrie.find(:all,:conditions => ['title LIKE ?', "#{params[:term]}%"])
+      #@book_catalog_entries = BookCatalogEntrie.all
+    else
+      @book_catalog_entries = BookCatalogEntrie.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
+      #format.json { render :json => @book_catalog_entries.to_json }
       format.json { render json: @book_catalog_entries }
     end
   end
+
+
 
   # GET /books/1
   # GET /books/1.json
