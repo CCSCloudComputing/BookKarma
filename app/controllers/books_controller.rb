@@ -20,8 +20,16 @@ def new
 end
 
 def show 
-	@books = Book.all
+
+	if((Book.find_by_id(params[:id]).user_id)!= nil)
 	@owner = Book.find_by_id(params[:id]).user
+	end
+	if((Book.find_by_id(params[:id]).user_id)== nil)
+
+        end
+
+	#@books = @owner.find_by_id(params[:id]).book_catalog_entrie_id
+
 end
 
 end

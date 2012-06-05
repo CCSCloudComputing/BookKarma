@@ -1,7 +1,7 @@
-<%= form_for(@request) do |z| %>
+<%= form_for(@request) do |f| %>
   <% if @request.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+      <h2><%= pluralize(@request.errors.count, "error") %> prohibited this book from being saved:</h2>
 
       <ul>
       <% @request.errors.full_messages.each do |msg| %>
@@ -12,15 +12,14 @@
   <% end %>
 
   <div class="field">
-    <%= z.label :user_id %><br />
-    <%= z.text_field :user_id %>
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
   </div>
   <div class="field">
-    <%= z.label :book_id %><br />
-    <%= z.text_field :book_id %>
+    <%= f.label :book_catalog_entrie_id %><br />
+    <%= f.text_field :book_catalog_entrie_id %>
   </div>
   <div class="actions">
-    <%= z.submit %>
+    <%= f.submit %>
   </div>
- 
 <% end %>

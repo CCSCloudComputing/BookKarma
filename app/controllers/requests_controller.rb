@@ -1,8 +1,9 @@
 class RequestsController < ApplicationController
 
 def create
-        @requests = Request.new(params[:requests])
-        @owner = User.find_by_id(@request.user_id)
+ #       @request = Request.create(params[:request])
+	@request = Request.new(params[:request]) 
+        @owner = @request.user
         @owner.requests << @request
         respond_to do |format|
       if @request.save
@@ -19,4 +20,10 @@ def new
         @request = Request.new
 end
 
+def show
+        @request = Request.all
+        @owner = Request.find_by_id(params[:id]).user
 end
+
+end
+

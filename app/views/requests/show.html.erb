@@ -1,21 +1,26 @@
 <h1>BookKarma</h1>
-<p>This page will show your requests</p>
-<% @owner.requests.each do |h| %>
+<p>Here are your currently requested books</p>
+
+<% @owner.requests.each do |o| %>
 	<div class="row">
 		<div class="span8"></div>
 			<p>
 			  <b>Book ID:</b>
-			  <%= h.book_id %>
+			  <%= o.book_catalog_entrie_id %>
 			</p>
 
 			<p>
 			  <b>User ID:</b>
-			  <%= h.user_id %>
+			  <%= o.user_id %>
 			</p>
 
 			<p>
 				<b>Book Title:</b>
-				<%= Book.find_by_id(h.book_id).title if (h.book_id != nil && Book.find_by_id(h.book_id != nil)) %>
+				<%= o.book_catalog_entrie.title %>
+			</p>
+			<p>
+				<b>Book Image:</b>
+				<%= image_tag("9780452272590.jpg", :alt => "book image") %>
 			</p>
 		</div>
 	</div>
