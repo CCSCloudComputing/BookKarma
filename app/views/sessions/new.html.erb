@@ -5,25 +5,23 @@
       </div>
 	<%= content_tag(:div, flash[:error], class: "alert alert-error") if flash[:error] %>
 	<%= content_tag(:div, flash[:success], class: "alert alert-success") if flash[:success] %>
-
+      <div class="out">
       <div class="row">
         <div class="span6">
           <h2>Log In</h2>
-           <p>	
-           	<%= label_tag :email %>
-	<%= text_field_tag :email %>
+           	
+           	<span class="inline"> <%= label_tag :email %> <%= text_field_tag :email %> </span>
 
-	<%= label_tag :password %>
-	<%= password_field_tag :password %> 
-	<%= submit_tag "Log in" %>
-</p>
+		<span class="inline"> <%= label_tag :password %> <%= password_field_tag :password %> </span>
+		<span> <%= submit_tag "Log in" %> </span>
+	
           
         </div>
-        <div class="span6">
+        <span class="span6">
           <h2>Not A Member? Sign up!</h2>
            <p><a class="btn btn-primary btn-large">Register Now &raquo;</a></p>
-       </div>
+       </span>
      
       </div>
-
+      </div>
 <% end %>
