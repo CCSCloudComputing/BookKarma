@@ -55,5 +55,20 @@ module BookKarma
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.action_mailer.delivery_method = :sendmail
+    config.action_mailer.perform_deliveries = true
+config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",  
+  :port                 => 587,  
+  :domain               => "bookkarma.com",  
+  :user_name            => "bookkarma.contact",  
+  :password             => "bookarma",  
+  :authentication       => "plain",  
+  :enable_starttls_auto => true  
+}
+config.action_mailer.default_url_options = {:host => "localhost:3000"}
+
   end
 end

@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'mail'
 gem 'rails', '>= 3.2.3'
 gem 'bootstrap-sass', '2.0.0'
 gem 'less-rails-bootstrap'
