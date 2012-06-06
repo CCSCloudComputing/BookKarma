@@ -1,4 +1,5 @@
 <%= form_tag sessions_path do %>
+
 <div class="hero-unit">
         <h1>Welcome to BookKarma!</h1>
         <p>BookKarma is a site for students by students.  Trade your books for karma and trade your karma for books!</p>
@@ -10,18 +11,18 @@
         <div class="span6">
           <h2>Log In</h2>
            <p>	
-           	<%= label_tag :email %>
-	<%= text_field_tag :email %>
+           	  <%= label_tag :email %>
+	            <%= text_field_tag :email %>
 
-	<%= label_tag :password %>
-	<%= password_field_tag :password %> 
-	<%= submit_tag "Log in" %>
-</p>
+	            <%= label_tag :password %>
+	            <%= password_field_tag :password %> 
+	            <%= submit_tag "Log in" %>
+          </p>
           
         </div>
         <div class="span6">
           <h2>Not A Member? Sign up!</h2>
-           <p><a class="btn btn-primary btn-large">Register Now &raquo;</a></p>
+           <p><a href="../users/new" class="btn btn-primary btn-large">Register Now &raquo;</a></p>
        </div>
      
       </div>
