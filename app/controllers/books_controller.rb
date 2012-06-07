@@ -21,9 +21,9 @@ end
 
 def show 
 
-	if((Book.find_by_id(params[:id]).user_id)!= nil)
-	@owner = Book.find_by_id(params[:id]).user
-	end
+	@owner = Book.find_by_id(params[:id]).user if((Book.find_by_id(params[:id]).user_id)!= nil)
+	
+	#end
 	if((Book.find_by_id(params[:id]).user_id)== nil)
 
         end
