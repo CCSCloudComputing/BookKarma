@@ -1,0 +1,23 @@
+<h1>BookKarma</h1>
+<p>This page will show matches</p>
+
+<% @matches.each do |o| %>
+	<div class="row">
+		<div class="span8"></div>
+			<p>
+			  <b>Book ID:</b>
+			  <%= o.book.book_catalog_entrie_id %>
+			</p>
+
+			<p>
+			  <b>Owned of Book ID:</b>
+			  <%= o.book.user_id %>
+			</p>
+
+			<p>
+			<b>Requester of book ID:</b>
+				<%= o.request.user_id %>
+			</p>
+		</div>
+	</div>
+<% end %>

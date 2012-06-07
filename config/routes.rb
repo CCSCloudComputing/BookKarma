@@ -5,8 +5,9 @@ BookKarma::Application.routes.draw do
 
   resources :books
 
- resources :requests
+  resources :requests
 
+  resources :matches
 #resources  resources :users
   resources :sessions, :only => [:new, :create, :destroy]
 
