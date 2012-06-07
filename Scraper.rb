@@ -6,8 +6,10 @@ require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
 require 'seed-fu'
-
+require 'thread'
 URL = "http://www.slugbooks.com"
+
+MUTEX = Mutex.new
 
 
 #Scrape a course from a relative URL
@@ -46,14 +48,16 @@ def scrape_course(course_url, writer, course)
 			puts title
 			puts author
 			puts isbn
-		
-			writer.add( :course => course, :title =>title, :author => author, :isbn => isbn, :url => url)
+			MUTEX.lock
+				writer.add( :course => course, :title =>title, :author => author, :isbn => isbn, :url => url)
+			MUTEX.unlock
+			#puts "wrote to file"
                 end
         end
 end
 
 #Scrapte a department from a relative URL
-def scrape_department(department_url, writer)
+def scrape_department(department_url, filename)
  	begin
         	#Open the web page for a particular department
         	department_doc = Nokogiri::HTML(open(URL + department_url))
@@ -62,18 +66,28 @@ def scrape_department(department_url, writer)
 		puts e
 		return nil
 	end
-	        #Go through all courses in that department
-        	department_doc.css(".middleclasslinks").css('li').each do |course|
+	num_scraped = 0
+	puts "creating writer " + filename
+		SeedFu::Writer.write(filename, :class_name => 'BookCatalogEntrie') do |writer|
+	       		#Go through all courses in that department
+        		department_doc.css(".middleclasslinks").css('li').each do |course|
 
-              		#Print the name of the course
-               		coursename = course.text.gsub(/\s+/, ' ').strip
+              			#Print the name of the course
+               			coursename = course.text.gsub(/\s+/, ' ').strip
 
-                	#Build the new URL for the course
-                	course_url = course.css('a')[0]['href']
+                		#Build the new URL for the course
+                		course_url = course.css('a')[0]['href']
+				#puts "here4" + coursename
+                		#Scrape the course
+                		scrape_course(course_url, writer, coursename)
+				num_scraped = num_scraped + 1
+        		end
+		end
+	if num_scraped == 0
+		file = File.open(filename, 'r')
+		File::unlink(file)
+	end
 
-                	#Scrape the course
-                	scrape_course(course_url, writer, coursename)
-        	end
 
 end
 
@@ -87,9 +101,8 @@ def scrape_school(school_url)
 		puts e
 		return nil
 	end
-	
-
-	SeedFu::Writer.write('db/fixtures/seed_script_' + school_url.gsub('/', '...') + '.rb', :class_name => 'Book') do |writer|
+	thread_list = []
+	thread_counter = 0
         	#Go through each department at a school
         	school_doc.css(".bottomlinks").css('li').each do |department|
 
@@ -98,11 +111,13 @@ def scrape_school(school_url)
 
                 	#Build the new URL for the department
                		department_url = department.css('a')[0]['href']
-
                 	#Scrape the Department
-                	scrape_department(department_url, writer)
+			number_str = thread_counter.to_s()
+                	new_thread = Thread.new{scrape_department(department_url, 'db/fixtures/seed_script_' + number_str +  school_url.gsub('/', '...') + '.rb')}
+			thread_list << new_thread
+			thread_counter = thread_counter + 1
 		end
-        end
+		thread_list.each { |t| t.join }
 end
 
 #Scrapte a state from a relative URL
@@ -165,49 +180,50 @@ command_line_department = nil
 command_line_course = nil
 
 #Check for the -h argument
-if ARGV.length == 1 and ARGV[0] == "-h"
-	puts HELP
-	exit
-end
+#if ARGV.length == 1 and ARGV[0] == "-h"
+#	puts HELP
+#	exit
+#end
 
 #Check to make sure that we have pairs of arguments
-if ARGV.length % 2 != 0
-	puts "Bad parameters"
-	exit
-end
+#if ARGV.length % 2 != 0
+#	puts "Bad parameters"
+#	exit
+#end
 
 #Parse command line arguments
-ARGV.each_index do |i|
-	if i % 2 == 1
-		next
-	end
+#ARGV.each_index do |i|
+#	if i % 2 == 1
+#		next
+#	end
 
-	if ARGV[i] == "-state"
-		command_line_state = ARGV[i+1]
-	elsif ARGV[i] == "-school"
-		command_line_school = ARGV[i+1]
-	elsif ARGV[i] == "-department"
-		command_line_department = ARGV[i+1]
-	elsif ARGV[i] == "-course"
-		command_line_course = ARGV[i+1]
-	else
-		puts "Unknown parameter " + ARGV[i]
-		exit
-	end
+#	if ARGV[i] == "-state"
+#		command_line_state = ARGV[i+1]
+#	elsif ARGV[i] == "-school"
+#		command_line_school = ARGV[i+1]
+#	elsif ARGV[i] == "-department"
+#		command_line_department = ARGV[i+1]
+#	elsif ARGV[i] == "-course"
+#		command_line_course = ARGV[i+1]
+#	else
+#		puts "Unknown parameter " + ARGV[i]
+#		exit
+#	end
 	
-end
+#end
 
 #Do the requested scrape
-	if command_line_course != nil
-		scrape_course(command_line_course, writer, course)
-	elsif command_line_department != nil
-		scrape_department(command_line_department, writer)
-	elsif command_line_school != nil
-		scrape_school(command_line_school)
-	elsif command_line_state != nil
-		scrape_state(command_line_state)
-	else
-		scrape_all(URL)
+#	if command_line_course != nil
+#		scrape_course(command_line_course, writer, course)
+#	elsif command_line_department != nil
+#		scrape_department(command_line_department, writer)
+#	elsif command_line_school != nil
+#		scrape_school(command_line_school)
+#	elsif command_line_state != nil
+#		scrape_state(command_line_state)
+#	else
+#		scrape_all(URL)
 
+	scrape_school("/UCSB/UCSB-Textbooks.html")
 
-end
+#end

@@ -9,5 +9,21 @@ class ApplicationController < ActionController::Base
  def signed_in?
     return !current_user.nil?
  end
+
+def match 
+	@requests = Request.all
+	@books = Book.all
+	@requests.each do |r|
+		@books.each do |e|
+			@match = Match.new 
+			if(r.book_catalog_entrie_id == e.book_catalog_entrie_id)
+		
+			@match.book = e
+			@match.request = r
+			@match.save
+			end
+		end
+	end
+end
  
 end
