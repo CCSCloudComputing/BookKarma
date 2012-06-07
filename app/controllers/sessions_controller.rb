@@ -17,7 +17,7 @@ def create
 end
 
 def destroy
-	cookies.delete[:auth_token]
+	cookies.delete(:auth_token)
 	redirect_to login_path
 end
 

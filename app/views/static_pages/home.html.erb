@@ -1,2 +1,52 @@
+    <script>
+    $(function() {
+        $( "#SEARCH" ).autocomplete({
+            source: '<%= book_catalog_entries_path(:json) %>',
+            focus: function(event, ui) {
+                $('#SEARCH').val(ui.item.title);
+                return false;
+            },
+            select: function(event, ui) {
+                $('#SEARCH').val(ui.item.title); 
+                $('#Title').html(ui.item.title);
+                $('#Author').html(ui.item.author);
+                $('#Isbn').html(ui.item.isbn);
+                $('#bookimg').attr('src', ui.item.url);
+                //$('#SEARCH-ID').val(ui.item.id);
+                  return false;
+            }
+        })
+        .data( "autocomplete" )._renderItem = function( ul, item ) {
+	     
+	     return $( "<li></li>" )
+		.data( "item.autocomplete", item )
+		.append( "<a>Title: " + item.title + "<br>Author: " + item.author + "</a>" )
+		.appendTo( ul );
+		};
+    });
+    //var programmingLang = ["ActionScript","AppleScript","Asp","BASIC","C","C++",
+    //    "Clojure","COBOL","ColdFusion","Erlang","Fortran","Groovy","Haskell",
+    //    "Java","JavaScript","Lisp","Perl","PHP","Python","Ruby","Scala","Scheme"];
+    </script>
+
+
 <h1>BookKarma</h1>
 <p>This is the home page for BookKarma</p>
+
+
+
+
+
+
+<form>
+	<label for="title">Search</label>
+      <input name="title" id="SEARCH" type="text" />
+      <input id="submit" type="submit" />
+</form>
+<div>
+	<img id="bookimg" src="" />
+	<span id="Title"> </span>
+	<span id="Author"> </span>
+	<span id="Isbn"> </span>
+
+</div>

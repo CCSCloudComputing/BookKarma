@@ -6,5 +6,8 @@ class ApplicationController < ActionController::Base
  	@current_user ||= User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
  end
 
+ def signed_in?
+    return !current_user.nil?
+ end
  
 end
