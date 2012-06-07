@@ -4,12 +4,16 @@ class BookCatalogEntriesController < ApplicationController
   def index
     #@book_catalog_entries = BookCatalogEntrie.all
 
-    if params[:term]
-      @book_catalog_entries = BookCatalogEntrie.find(:all,:conditions => ['title LIKE ?', "#{params[:term]}%"])
-      #@book_catalog_entries = BookCatalogEntrie.all
-    else
-      @book_catalog_entries = BookCatalogEntrie.all
-    end
+	if params[:term]
+		if !params[:term].to_i
+			@book_catalog_entries = BookCatalogEntrie.find(:all,:conditions => ['title LIKE ? OR isbn LIKE ? OR course LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%"])
+		else
+			@book_catalog_entries = BookCatalogEntrie.find(:all,:conditions => ['title LIKE ? OR isbn LIKE ? OR author LIKE ? OR course LIKE ?', "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%", "%#{params[:term]}%"])
+	#@book_catalog_entries = BookCatalogEntrie.all
+		end
+	else
+		@book_catalog_entries = BookCatalogEntrie.all
+	end
 
     respond_to do |format|
       format.html # index.html.erb
