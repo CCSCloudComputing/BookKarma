@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120605042207) do
+ActiveRecord::Schema.define(:version => 20120607020756) do
 
   create_table "book_catalog_entries", :force => true do |t|
     t.string   "title"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20120605042207) do
   create_table "books", :force => true do |t|
     t.integer "user_id"
     t.integer "book_catalog_entrie_id"
+    t.boolean "available"
   end
 
   create_table "requests", :force => true do |t|
