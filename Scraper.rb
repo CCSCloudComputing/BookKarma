@@ -9,7 +9,7 @@ require 'seed-fu'
 require 'thread'
 URL = "http://www.slugbooks.com"
 
-#MUTEX = Mutex.new
+MUTEX = Mutex.new
 
 
 #Scrape a course from a relative URL
@@ -48,16 +48,16 @@ def scrape_course(course_url, writer, course)
 			puts title
 			puts author
 			puts isbn
-			#MUTEX.lock
+			MUTEX.lock
 				writer.add( :course => course, :title =>title, :author => author, :isbn => isbn, :url => url)
-			#mutex.unlock
+			MUTEX.unlock
 			#puts "wrote to file"
                 end
         end
 end
 
 #Scrapte a department from a relative URL
-def scrape_department(department_url, writer)
+def scrape_department(department_url, filename)
  	begin
         	#Open the web page for a particular department
         	department_doc = Nokogiri::HTML(open(URL + department_url))
@@ -66,18 +66,28 @@ def scrape_department(department_url, writer)
 		puts e
 		return nil
 	end
-	        #Go through all courses in that department
-        	department_doc.css(".middleclasslinks").css('li').each do |course|
+	num_scraped = 0
+	puts "creating writer " + filename
+		SeedFu::Writer.write(filename, :class_name => 'BookCatalogEntrie') do |writer|
+	       		#Go through all courses in that department
+        		department_doc.css(".middleclasslinks").css('li').each do |course|
 
-              		#Print the name of the course
-               		coursename = course.text.gsub(/\s+/, ' ').strip
+              			#Print the name of the course
+               			coursename = course.text.gsub(/\s+/, ' ').strip
 
-                	#Build the new URL for the course
-                	course_url = course.css('a')[0]['href']
-			#puts "here4" + coursename
-                	#Scrape the course
-                	scrape_course(course_url, writer, coursename)
-        	end
+                		#Build the new URL for the course
+                		course_url = course.css('a')[0]['href']
+				#puts "here4" + coursename
+                		#Scrape the course
+                		scrape_course(course_url, writer, coursename)
+				num_scraped = num_scraped + 1
+        		end
+		end
+	if num_scraped == 0
+		file = File.open(filename, 'r')
+		File::unlink(file)
+	end
+
 
 end
 
@@ -102,14 +112,12 @@ def scrape_school(school_url)
                 	#Build the new URL for the department
                		department_url = department.css('a')[0]['href']
                 	#Scrape the Department
-			SeedFu::Writer.write('db/fixtures/seed_script_' + school_url.gsub('/', '...') + '.rb', :class_name => 'BookCatalogEntrie') do |writer|
-                	#	new_thread = Thread.new{scrape_department(department_url, writer)}
-			#	thread_list << new_thread
-				scrape_department(department_url, writer)
-			end
-			#thread_counter = thread_counter + 1
+			number_str = thread_counter.to_s()
+                	new_thread = Thread.new{scrape_department(department_url, 'db/fixtures/seed_script_' + number_str +  school_url.gsub('/', '...') + '.rb')}
+			thread_list << new_thread
+			thread_counter = thread_counter + 1
 		end
-		#thread_list.each { |t| t.join }
+		thread_list.each { |t| t.join }
 end
 
 #Scrapte a state from a relative URL
