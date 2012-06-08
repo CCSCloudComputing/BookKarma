@@ -19,7 +19,7 @@ BookKarma::Application.routes.draw do
 
   #match "/owned_books" => "owned_books#show"
 
-  root :to => "static_pages#home"
+  root :to => "application#home"
 
 
 end

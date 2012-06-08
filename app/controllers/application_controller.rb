@@ -10,6 +10,14 @@ class ApplicationController < ActionController::Base
     return !current_user.nil?
  end
 
+ def home
+    if !signed_in?
+   	 redirect_to login_path
+    end
+    @user = current_user
+    @request = Request.all
+ end
+
 def match 
 	@requests = Request.all
 	@books = Book.all

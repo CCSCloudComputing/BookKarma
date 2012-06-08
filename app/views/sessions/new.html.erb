@@ -3,31 +3,31 @@
 <div class="hero-unit">
         <h1>Welcome to BookKarma!</h1>
         <p>BookKarma is a site for students by students.  Trade your books for karma and trade your karma for books!</p>
-      </div>
-	<%= content_tag(:div, flash[:error], class: "alert alert-error") if flash[:error] %>
-	<%= content_tag(:div, flash[:success], class: "alert alert-success") if flash[:success] %>
-      <div class="out">
-      <div class="row">
-        <div class="span6">
-          <h2>Log In</h2>
+</div>
+<%= content_tag(:div, flash[:error], class: "alert alert-error") if flash[:error] %>
+<%= content_tag(:div, flash[:success], class: "alert alert-success") if flash[:success] %>
+<div class="out">
+  <div class="row">
+    <div class="span6">
+      <h2>Log In</h2>
 
-           <p>	
+      <p>	
            	  <%= label_tag :email %>
 	            <%= text_field_tag :email %>
 
 	            <%= label_tag :password %>
 	            <%= password_field_tag :password %> 
 	            <%= submit_tag "Log in" %>
-          </p>
+      </p>
 
           
-        </div>
-        <div class="span6">
+    </div>
+    <div class="span6">
           <h2>Not A Member? Sign up!</h2>
            <p><a href="../users/new" class="btn btn-primary btn-large">Register Now &raquo;</a></p>
-       </div>
+    </div>
 
      
-      </div>
-      </div>
+  </div>
+</div>
 <% end %>

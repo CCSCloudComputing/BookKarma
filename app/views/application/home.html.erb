@@ -1,0 +1,106 @@
+    <script>
+    $(function() {
+        $( "#SEARCH" ).autocomplete({
+            source: '<%= book_catalog_entries_path(:json) %>',
+            focus: function(event, ui) {
+                $('#SEARCH').val(ui.item.title);
+                return false;
+            },
+            select: function(event, ui) {
+                $('#SEARCH').val(ui.item.title); 
+                $('#Title').html(ui.item.title);
+                $('#Author').html(ui.item.author);
+                $('#Isbn').html(ui.item.isbn);
+                $('#bookimg').attr('src', ui.item.url);
+                //$('#SEARCH-ID').val(ui.item.id);
+                  return false;
+            }
+        })
+        .data( "autocomplete" )._renderItem = function( ul, item ) {
+	     
+	     return $( "<li></li>" )
+		.data( "item.autocomplete", item )
+		.append( "<a>Title: " + item.title + "<br>Author: " + item.author + "</a>" )
+		.appendTo( ul );
+		};
+    });
+    //var programmingLang = ["ActionScript","AppleScript","Asp","BASIC","C","C++",
+    //    "Clojure","COBOL","ColdFusion","Erlang","Fortran","Groovy","Haskell",
+    //    "Java","JavaScript","Lisp","Perl","PHP","Python","Ruby","Scala","Scheme"];
+    </script>
+
+
+<h1>BookKarma</h1>
+<p>This is the home page for BookKarma</p>
+
+
+
+<form>
+	<label for="title">Search</label>
+      <input name="title" id="SEARCH" type="text" />
+      <input id="submit" type="submit" />
+</form>
+<div>
+	<img id="bookimg" src="" />
+	<span id="Title"> </span>
+	<span id="Author"> </span>
+	<span id="Isbn"> </span>
+
+</div>
+
+
+
+   <div class="row">
+     <div class="span6">
+       <h2>Owned Books</h2>
+        <% @user.books.each do |o| %>
+
+         <p>
+              <b>Book ID:</b>
+              <%= o.book_catalog_entrie_id %>
+         </p>
+
+          <p>
+              <b>User ID:</b>
+              <%= o.user_id %>
+          </p>
+
+          <p>
+                <b>Book Title:</b>
+                <%= o.book_catalog_entrie.title %>
+          </p>
+          <p>
+                <b>Book Image:</b>
+                <%= image_tag("9780452272590.jpg", :alt => "book image") %>
+          </p>
+
+        <% end %>
+     </div>
+     <div class="span6">
+        <h2>Book Requests</h2>
+        <% @user.requests.each do |o| %>p>
+         <p>
+         <b>Book ID:</b>
+         <%= o.book_catalog_entrie_id %>
+         </p>
+
+         <p>
+           <b>User ID:</b>
+           <%= o.user_id %>
+         </p>
+   
+         <p>
+           <b>Book Title:</b>
+           <%= o.book_catalog_entrie.title %>
+         </p>
+         <p>
+           <b>Book Image:</b>
+           <%= image_tag("9780452272590.jpg", :alt => "book image") %>
+         </p>
+        <% end %>
+     </div>
+
+     
+   </div>
+
+
