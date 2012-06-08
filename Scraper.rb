@@ -48,8 +48,16 @@ def scrape_course(course_url, writer, course)
 			puts title
 			puts author
 			puts isbn
+
+			our_url = "images/" + isbn.strip + ".jpg"
+
+			#download the file
+			imagefile = open(URL + url)
+				file = File::open(our_url, 'w')
+				file.write(imagefile.read())
+				file.close
 			MUTEX.lock
-				writer.add( :course => course, :title =>title, :author => author, :isbn => isbn, :url => url)
+				writer.add( :course => course, :title =>title, :author => author, :isbn => isbn, :url => our_url)
 			MUTEX.unlock
 			#puts "wrote to file"
                 end
