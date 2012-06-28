@@ -18,6 +18,13 @@ class ApplicationController < ActionController::Base
     @request = Request.all
  end
 
+ def profile
+ 	if !signed_in?
+   	 redirect_to login_path
+    end
+    @user = current_user
+ end
+
 def match 
 	@requests = Request.all
 	@books = Book.all
