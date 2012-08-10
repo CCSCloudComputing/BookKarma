@@ -8,12 +8,15 @@ BookKarma::Application.routes.draw do
   resources :requests
 
   resources :matches
+
+
 #resources  resources :users
   resources :sessions, :only => [:new, :create, :destroy]
 
 
   match "/login" => "sessions#new", as: "login"
   match "/logout" => "sessions#destroy", as: "logout"
+  match "/profile" => "application#profile", as: "profile"
 
   #match "/books/new" => "books#new"
 

@@ -1,0 +1,60 @@
+# DO NOT MODIFY THIS FILE, it was auto-generated.
+#
+# Date: 2012-06-14 17:38:22 -0700
+# Seeding BookCatalogEntrie
+# Written with the command:
+#
+#   Scraper.rb 
+#
+BookCatalogEntrie.seed(:id,
+  {:course=>"BL.ST 004 : Critical Intro Race (JOHNSON)", :title=>"Two-Faced Racism: Whites in the Backstage and Frontstage", :author=>"Leslie Picca ", :isbn=>"9780415954761\n\n", :url=>"images/9780415954761.jpg"},
+  {:course=>"BL.ST 004 : Critical Intro Race (JOHNSON)", :title=>"Illegal People : How globalization creates migration and...", :author=>"David Bacon ", :isbn=>"9780807042304\n\n", :url=>"images/9780807042304.jpg"},
+  {:course=>"BL.ST 004 : Critical Intro Race (JOHNSON)", :title=>"Racism without Racists: Color-Blind Racism and the Persistence of...", :author=>"Eduardo Bonilla-Silva ", :isbn=>"9781442202184\n\n", :url=>"images/9781442202184.jpg"},
+  {:course=>"BL.ST 004 : Critical Intro Race (JOHNSON)", :title=>"The White Boy Shuffle: A Novel", :author=>"Paul Beatty ", :isbn=>"9780312280192\n\n", :url=>"images/9780312280192.jpg"},
+  {:course=>"BL.ST 006 : Civil Rights Movmnt (MADISON)", :title=>"Shades of Freedom: Racial Politics and Presumptions of the American...", :author=>"A. Leon Higginbotham Jr. ", :isbn=>"9780195122886\n\n", :url=>"images/9780195122886.jpg"},
+  {:course=>"BL.ST 006 : Civil Rights Movmnt (MADISON)", :title=>"Civil Rights Since 1787", :author=>": 9780814782491 (more details) ", :isbn=>" \n\n", :url=>"images/.jpg"},
+  {:course=>"BL.ST 006 : Civil Rights Movmnt (MADISON)", :title=>"American Nightmare: The History of Jim Crow", :author=>"Jerrold M. Packard ", :isbn=>"9780312302412\n\n", :url=>"images/9780312302412.jpg"},
+  {:course=>"BL.ST 006 : Civil Rights Movmnt (MADISON)", :title=>"Faces At The Bottom Of The Well: The Permanence Of Racism", :author=>"Derrick Bell ", :isbn=>"9780465068142\n\n", :url=>"images/9780465068142.jpg"},
+  {:course=>"BL.ST 007 : Intro Carib Studies (MCAULEY)", :title=>"Haiti and the United States: The Psychological Moment (The United...", :author=>"Brenda Gayle Plummer ", :isbn=>"9780820323824\n\n", :url=>"images/9780820323824.jpg"},
+  {:course=>"BL.ST 007 : Intro Carib Studies (MCAULEY)", :title=>"Puerto Rico in the American Century: A History since 1898", :author=>"Cesar J. Ayala ", :isbn=>"9780807859544\n\n", :url=>"images/9780807859544.jpg"},
+  {:course=>"BL.ST 007 : Intro Carib Studies (MCAULEY)", :title=>"A Concise History of the Caribbean (Cambridge Concise Histories)", :author=>"B. W. Higman ", :isbn=>"9780521043489\n\n", :url=>"images/9780521043489.jpg"},
+  {:course=>"BL.ST 007 : Intro Carib Studies (MCAULEY)", :title=>"Natural Rebels: A Social History of Enslaved Women in Barbados", :author=>"Hilary McD. Beckles ", :isbn=>"9780813515113\n\n", :url=>"images/9780813515113.jpg"},
+  {:course=>"BL.ST 007 : Intro Carib Studies (MCAULEY)", :title=>"A Small Place", :author=>"Jamaica Kincaid ", :isbn=>"9780374527075\n\n", :url=>"images/9780374527075.jpg"},
+  {:course=>"BL.ST 125 : Queer Blst (CHAPMAN)", :title=>"Venceremos?: The Erotics of Black Self-making in Cuba (Perverse...", :author=>"Jafari S. Allen ", :isbn=>"9780822349501\n\n", :url=>"images/9780822349501.jpg"},
+  {:course=>"BL.ST 125 : Queer Blst (CHAPMAN)", :title=>"The Politics of Passion: Women's Sexual Culture in the...", :author=>"Gloria Wekker ", :isbn=>"9780231131636\n\n", :url=>"images/9780231131636.jpg"},
+  {:course=>"BL.ST 125 : Queer Blst (CHAPMAN)", :title=>"Zami: A New Spelling of My Name - A Biomythography (Crossing Press...", :author=>"Audre Lorde ", :isbn=>"9780895941220\n\n", :url=>"images/9780895941220.jpg"},
+  {:course=>"BL.ST 125 : Queer Blst (CHAPMAN)", :title=>"Sula", :author=>"Toni Morrison ", :isbn=>"9781400033430\n\n", :url=>"images/9781400033430.jpg"},
+  {:course=>"BL.ST 153 : Black Pop Music (STEWART)", :title=>"The Art of Soul Music -1960 to 1980: A Musicological Perspective", :author=>"STEWART EARL L ", :isbn=>"9780757599996\n\n", :url=>"images/9780757599996.jpg"},
+  {:course=>"BL.ST 154 : Env. Race & Justice (PULIDO)", :title=>"From the Ground Up: Environmental Racism and the Rise of the...", :author=>"Luke W. Cole ", :isbn=>"9780814715376\n\n", :url=>"images/9780814715376.jpg"},
+  {:course=>"BL.ST 154 : Env. Race & Justice (PULIDO)", :title=>"Dumping In Dixie: Race, Class, And Environmental Quality, Third...", :author=>"Robert D. Bullard ", :isbn=>"9780813367927\n\n", :url=>"images/9780813367927.jpg"},
+  {:course=>"BL.ST 160 : Racism & Soc Policy (MADISON)", :title=>"Outcasts from Evolution: Scientific Attitudes of Racial...", :author=>"John S. Haller Jr. ", :isbn=>"9780809319824\n\n", :url=>"images/9780809319824.jpg"},
+  {:course=>"BL.ST 160 : Racism & Soc Policy (MADISON)", :title=>"The Redneck Manifesto: How Hillbillies, Hicks, and White Trash...", :author=>"Jim Goad ", :isbn=>"9780684838649\n\n", :url=>"images/9780684838649.jpg"},
+  {:course=>"BL.ST 160 : Racism & Soc Policy (MADISON)", :title=>"Race in Mind: Race, IQ, and Other Racisms", :author=>"Alexander Alland ", :isbn=>"9781403965578\n\n", :url=>"images/9781403965578.jpg"},
+  {:course=>"BL.ST 160 : Racism & Soc Policy (MADISON)", :title=>"The Mismeasure of Man (Revised & Expanded)", :author=>"Stephen Jay Gould ", :isbn=>"9780393314250\n\n", :url=>"images/9780393314250.jpg"},
+  {:course=>"BL.ST 162 : African Cinema (AKUDINOBI)", :title=>"Postnationalist African Cinemas", :author=>"Alexie Tcheuyap ", :isbn=>"9780719083365\n\n", :url=>"images/9780719083365.jpg"},
+  {:course=>"BL.ST 162 : African Cinema (AKUDINOBI)", :title=>"Postcolonial African Cinema: Ten Directors", :author=>"David Murphy ", :isbn=>"9780719072031\n\n", :url=>"images/9780719072031.jpg"},
+  {:course=>"BL.ST 162 : African Cinema (AKUDINOBI)", :title=>"Screens and Veils: Maghrebi Women's Cinema (New Directions in...", :author=>"Florence Martin ", :isbn=>"9780253223418\n\n", :url=>"images/9780253223418.jpg"},
+  {:course=>"BL.ST 162 : African Cinema (AKUDINOBI)", :title=>"Postcolonial Artists and Global Aesthetics (African Expressive...", :author=>"Akinwumi Adesokan ", :isbn=>"9780253223456\n\n", :url=>"images/9780253223456.jpg"},
+  {:course=>"BL.ST 169BR : Af-American Hist (JOHNSON)", :title=>"Slave Culture: Nationalist Theory and the Foundations of Black America", :author=>"Sterling Stuckey ", :isbn=>"9780195056648\n\n", :url=>"images/9780195056648.jpg"},
+  {:course=>"BL.ST 169BR : Af-American Hist (JOHNSON)", :title=>"Soul by Soul: Life Inside the Antebellum Slave Market", :author=>"Walter Johnson ", :isbn=>"9780674005396\n\n", :url=>"images/9780674005396.jpg"},
+  {:course=>"BL.ST 169BR : Af-American Hist (JOHNSON)", :title=>"A Short History of Reconstruction", :author=>"Eric Foner ", :isbn=>"9780060964313\n\n", :url=>"images/9780060964313.jpg"},
+  {:course=>"BL.ST 169BR : Af-American Hist (JOHNSON)", :title=>"To 'Joy My Freedom: Southern Black Women's Lives and Labors After...", :author=>"Tera W.; Tera W. Hunter Hunter ", :isbn=>"9780674893085\n\n", :url=>"images/9780674893085.jpg"},
+  {:course=>"BL.ST 171 : Africa In Film (AKUDINOBI)", :title=>"African Cinemas: Decolonizing the Gaze", :author=>"Olivier Barlet ", :isbn=>"9781856497435\n\n", :url=>"images/9781856497435.jpg"},
+  {:course=>"BL.ST 171 : Africa In Film (AKUDINOBI)", :title=>"Media and Identity in Africa", :author=>": 9780253222015 (more details) ", :isbn=>" \n\n", :url=>"images/.jpg"},
+  {:course=>"BL.ST 171 : Africa In Film (AKUDINOBI)", :title=>"Mistaking Africa: Curiosities and Inventions of the American Mind,...", :author=>"Curtis A Keim ", :isbn=>"9780813343860\n\n", :url=>"images/9780813343860.jpg"},
+  {:course=>"BL.ST 171 : Africa In Film (AKUDINOBI)", :title=>"Africa in the American Imagination: Popular Culture, Radicalized...", :author=>"Carol Magee ", :isbn=>"9781617031526\n\n", :url=>"images/9781617031526.jpg"},
+  {:course=>"BL.ST 191IB : Spec Topic In Bl St (BARROS)", :title=>"That's the Joint!: The Hip-Hop Studies Reader", :author=>": 9780415873260 (more details) ", :isbn=>" \n\n", :url=>"images/.jpg"},
+  {:course=>"BL.ST 193AD : Sem Black Studies (STRONGMAN)", :title=>"Blacks and Blackness in Central America: Between Race and Place", :author=>": 9780822348030 (more details) ", :isbn=>" \n\n", :url=>"images/.jpg"},
+  {:course=>"BL.ST 193AD : Sem Black Studies (STRONGMAN)", :title=>"Blackness in the White Nation: A History of Afro-Uruguay", :author=>"George Reid Andrews ", :isbn=>"9780807871584\n\n", :url=>"images/9780807871584.jpg"},
+  {:course=>"BL.ST 193AD : Sem Black Studies (STRONGMAN)", :title=>"Shadows of Your Black Memory", :author=>"Donato Ndongo ", :isbn=>"9780974888125\n\n", :url=>"images/9780974888125.jpg"},
+  {:course=>"BL.ST 193AD : Sem Black Studies (STRONGMAN)", :title=>"Colonial Blackness: A History of Afro-Mexico (Blacks in the Diaspora)", :author=>"Herman L. Bennett ", :isbn=>"9780253223319\n\n", :url=>"images/9780253223319.jpg"},
+  {:course=>"BL.ST 193AD : Sem Black Studies (STRONGMAN)", :title=>"Slaves, Subjects, and Subversives: Blacks in Colonial Latin America...", :author=>": 9780826323972 (more details) ", :isbn=>" \n\n", :url=>"images/.jpg"},
+  {:course=>"BL.ST 193AD : Sem Black Studies (STRONGMAN)", :title=>"Afro-latino Voices: Narratives from the Early Modern Ibero-Atlantic...", :author=>"Kathryn Joy McKnight ", :isbn=>"9780872209930\n\n", :url=>"images/9780872209930.jpg"},
+  {:course=>"BL.ST 193AD : Sem Black Studies (STRONGMAN)", :title=>"They Came Before Columbus: The African Presence in Ancient America", :author=>"Ivan Van Sertima ", :isbn=>"9780812968170\n\n", :url=>"images/9780812968170.jpg"},
+  {:course=>"BL.ST 193AD : Sem Black Studies (STRONGMAN)", :title=>"Afro-Latin America, 1800-2000", :author=>"George Reid Andrews ", :isbn=>"9780195152333\n\n", :url=>"images/9780195152333.jpg"},
+  {:course=>"BL.ST 193AD : Sem Black Studies (STRONGMAN)", :title=>"Chambacu: Black Slum (Discoveries)", :author=>"Manuel Zapata Olivella ", :isbn=>"9780935480399\n\n", :url=>"images/9780935480399.jpg"},
+  {:course=>"BL.ST 206 : Graduate Proseminar (ROBINSON)", :title=>"Bodies in Dissent: Spectacular Performances of Race and Freedom,...", :author=>"Daphne A. Brooks ", :isbn=>"9780822337225\n\n", :url=>"images/9780822337225.jpg"},
+  {:course=>"BL.ST 206 : Graduate Proseminar (ROBINSON)", :title=>"Black Is a Country: Race and the Unfinished Struggle for Democracy", :author=>"Nikhil Pal Singh ", :isbn=>"9780674013001\n\n", :url=>"images/9780674013001.jpg"},
+  {:course=>"BL.ST 206 : Graduate Proseminar (ROBINSON)", :title=>"Laboring Women: Reproduction and Gender in New World Slavery (Early...", :author=>"Jennifer L. Morgan ", :isbn=>"9780812218732\n\n", :url=>"images/9780812218732.jpg"}
+)
+# End auto-generated file.

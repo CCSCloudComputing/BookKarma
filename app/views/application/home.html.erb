@@ -36,7 +36,7 @@
 
 
 <form>
-	<label for="title">Search</label>
+	<label for="title">Add a book you own</label>
       <input name="title" id="SEARCH" type="text" />
       <input id="submit" type="submit" />
 </form>
@@ -78,7 +78,7 @@
      </div>
      <div class="span6">
         <h2>Book Requests</h2>
-        <% @user.requests.each do |o| %>p>
+        <% @user.requests.each do |o| %>
          <p>
          <b>Book ID:</b>
          <%= o.book_catalog_entrie_id %>
