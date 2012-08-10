@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def welcome_email(user)
   	@user = user
-  	@url = "<insert login page url here>"
+  	#@url = ""
   	mail(:to => user.email, :subject => "Welcome to BookKarma")
   end
 end

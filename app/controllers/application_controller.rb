@@ -25,10 +25,11 @@ def match
 		@books.each do |e|
 			@match = Match.new 
 			if(r.book_catalog_entrie_id == e.book_catalog_entrie_id)
-		
-			@match.book = e
-			@match.request = r
-			@match.save
+				@match.book = e
+				@match.request = r
+				if @match.save
+					#send email
+				end
 			end
 		end
 	end
