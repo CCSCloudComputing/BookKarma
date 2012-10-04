@@ -35,7 +35,8 @@ def match
 				@match.book = e
 				@match.request = r
 				if @match.save
-					#send email
+					UserMailer.match_found_owner(@match).deliver
+					UserMailer.match_found_requester(@match).deliver
 				end
 			end
 		end
