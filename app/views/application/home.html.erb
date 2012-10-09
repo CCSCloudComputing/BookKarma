@@ -1,3 +1,7 @@
+   
+
+
+
     <script>
     $(function() {
         $( "#SEARCH" ).autocomplete({
@@ -31,20 +35,30 @@
 
 
 <h1>BookKarma</h1>
-<p>This is the home page for BookKarma</p>
+<p>Your Library</p>
 
 
 
 <form>
 	<label for="title">Add a book you own</label>
       <input name="title" id="SEARCH" type="text" />
-      <input id="submit" type="submit" />
+      
+      <label class="radio">
+          <input type="radio" name="optionsRadios" id="optionOwned" value="addOwned" checked>
+          Add to owned books.
+      </label>
+      <label class="radio">
+          <input type="radio" name="optionsRadios" id="optionRequest" value="addRequest">
+          Add to book requests.
+      </label>
+      <button type="submit" class="btn">Add Book</button>
 </form>
 <div>
 	<img id="bookimg" src="" />
 	<span id="Title"> </span>
 	<span id="Author"> </span>
-	<span id="Isbn"> </span>
+	<span id="Isbn">  </span>
+
 
 </div>
 
@@ -59,7 +73,10 @@
               <b>Book ID:</b>
               <%= o.book_catalog_entrie_id %>
          </p>
-
+         <p>
+              <b>Book isbn:</b>
+              <%= o.book_catalog_entrie.isbn %>
+         </p>
           <p>
               <b>User ID:</b>
               <%= o.user_id %>
@@ -70,11 +87,30 @@
                 <%= o.book_catalog_entrie.title %>
           </p>
           <p>
-                <b>Book Image:</b>
-                <%= image_tag("9780452272590.jpg", :alt => "book image") %>
+             
+              <a class="thumbnails"  href="#<%= o.book_catalog_entrie_id %>" data-toggle="modal">
+                <%= image_tag("/images/"+o.book_catalog_entrie.isbn.rstrip+".jpg", :alt => "book image") %>
+               <div class="modal fade" id="<%= o.book_catalog_entrie_id %>">
+                <div class="modal-header">
+                  <a class="close" data-dismiss="modal">&times;</a>
+                  <h3><%= o.book_catalog_entrie.title %></h3>
+                </div>
+                <div class="modal-body">
+                 <p>Book ID: <%= o.book_catalog_entrie_id %></p>
+                 <p>Book Author: <%= o.book_catalog_entrie.author %></p>
+                 <p>Book ISBN: <%= o.book_catalog_entrie.isbn %></p>
+                </div>
+                <div class="modal-footer">
+                  <p>You own this book.</p>
+                </div>
+               </div>
+              </a>
+             
           </p>
+          
 
         <% end %>
+
      </div>
      <div class="span6">
         <h2>Book Requests</h2>
@@ -94,9 +130,26 @@
            <%= o.book_catalog_entrie.title %>
          </p>
          <p>
-           <b>Book Image:</b>
-           <%= image_tag("9780452272590.jpg", :alt => "book image") %>
-         </p>
+             
+              <a class="thumbnails"  href="#<%= o.book_catalog_entrie_id %>" data-toggle="modal">
+                <%= image_tag("/images/"+o.book_catalog_entrie.isbn.rstrip+".jpg", :alt => "book image") %>
+               <div class="modal fade" id="<%= o.book_catalog_entrie_id %>">
+                <div class="modal-header">
+                  <a class="close" data-dismiss="modal">&times;</a>
+                  <h3><%= o.book_catalog_entrie.title %></h3>
+                </div>
+                <div class="modal-body">
+                 <p>Book ID: <%= o.book_catalog_entrie_id %></p>
+                 <p>Book Author: <%= o.book_catalog_entrie.author %></p>
+                 <p>Book ISBN: <%= o.book_catalog_entrie.isbn %></p>
+                </div>
+                <div class="modal-footer">
+                  <p>You want this book.</p>
+                </div>
+               </div>
+              </a>
+             
+          </p>
         <% end %>
      </div>
 

@@ -14,3 +14,9 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+$('a').popover({
+    placement: 'right'
+});
+$('a').tooltip({
+    placement: 'right'
+});
