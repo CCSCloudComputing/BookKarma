@@ -1,6 +1,12 @@
-== Welcome to Rails
+== About
+BookKarma is a book exchange website designed for students who want to trade books. Books are submitted for a certain amount of Karma points. With these points the user can acquire other books. 
 
-Rails is a web-application framework that includes everything needed to create
+== Getting Started
+To run clone the repository:
+       git clone https://github.com/CCSCloudComputing/BookKarma.git
+
+
+
 database-backed web applications according to the Model-View-Control pattern.
 
 This pattern splits the view (also called the presentation) into "dumb"
